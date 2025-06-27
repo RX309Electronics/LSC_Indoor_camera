@@ -54,20 +54,22 @@ When it boots up normally it starts up everything but then it presents a passwor
 Here is the command to update the up_bootargs to bypass the normal init: setenv up_bootargs 'setenv bootargs console=ttyS1,115200n8 mem=${holily_mem}M@0x0 rmem=18M@0x2e00000 init=/bin/sh rootfstype=squashfs root=/dev/mtdblock5 rw mtdparts=${mtdparts}'. Its also in a file if you like to copy and paste: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootargs_shell)
 
 By changing the 'Init' or 'rdinit' parameter from standard '/linuxrc' to '/bin/sh' we basically say to the kernel to run /bin/sh (standard busybox shell) as PID 1 process. In Unix and *Nix PID 1 is the process that inmideatly runs after the kernel has initialised and runs till the device is shut off and has to keep running the whole time (otherwise you get a kernel panic). /linuxrc basically runs the standard init scripts and starts the application while /bin/sh presents a non-passsword-protected shell to us. After changing the parameter and typing 'saveenv' to write the changes to the flash chip, we can simply run 'boot' to start the kernel. After it has booted it should present a shell to us. If we are in the shell, there are a few things we have to do first. Because we bypassed the normal Init process we have to manually execute some commands to mount the standard required Linux directories and to prepare the system just like the normal Init process had done. First we mount the required filesystems, run the commands below in the shell i extracted from the rcS script in the filesystem:
-
+,,,
 mount -t tmpfs tmpfs /dev
 mkdir -p /dev/pts
 mkdir -p /dev/shm
 mount -a
 /bin/mount -av
+,,,
 
 Now it should have mounted the basic Linux directories like proc, dev and sys, now most commands should also work. But we also need to mount the other partitions so we can get acess to the juicy Tuya custom stuff. 
 Simply run these commands below: 
-
+,,,
 mkdir -p /mnt/config
 /bin/mount -t jffs2 /dev/mtdblock6 /mnt/config
 /bin/mount -t squashfs /dev/mtdblock7 /usr
 /bin/mount --bind /usr/modules /lib/modules
+,,,
 
 After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition you can simply copy and paste this into the shell: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init).
 
