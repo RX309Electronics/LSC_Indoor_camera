@@ -1,0 +1,818 @@
+U-Boot SPL 2013.07-gfc0af3c (Oct 28 2024 - 18:27:53)
+Board info: T23N
+
+
+apll_freq = 1188000000 
+
+mpll_freq = 1200000000 
+
+sdram init start
+
+DDR clk rate 600000000
+
+DDR_PAR of eFuse: 00000000 00000000
+
+sdram init finished
+
+image entry point: 0x80100000
+
+
+
+U-Boot 2013.07-gfc0af3c (Oct 28 2024 - 18:27:53)
+
+Board: ISVP (Ingenic XBurst T23 SoC)
+DRAM:  64 MiB
+Top of RAM usable for U-Boot at: 84000000
+Reserving 441k for U-Boot at: 83f90000
+Reserving 32784k for malloc() at: 81f8c000
+Reserving 32 Bytes for Board Info at: 81f8bfe0
+Reserving 124 Bytes for Global Data at: 81f8bf64
+Reserving 128k for boot params() at: 81f6bf64
+Stack Pointer at: 81f6bf48
+Now running in RAM - U-Boot at: 83f90000
+MMC:   msc: 0
+the manufacturer 20
+SF: Detected XM25QH64C
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   ====>PHY not found!Jz4775-9161
+Hit any key to stop autoboot:  1  0 
+the manufacturer 20
+SF: Detected XM25QH64C
+
+--->probe spend 4 ms
+SF: 1703936 bytes @ 0x48000 Read: OK
+--->read spend 548 ms
+## Booting kernel from Legacy Image at 80600000 ...
+   Image Name:   Linux-3.10.14__isvp_pike_1.0__
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    1655284 Bytes = 1.6 MiB
+   Load Address: 80010000
+   Entry Point:  803889d0
+   Verifying Checksum ... OK
+   Uncompressing Kernel Image ... OK
+
+Starting kernel ...
+
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Initializing cgroup subsys cpuacct
+[    0.000000] Linux version 3.10.14__isvp_pike_1.0__ (ubuntu@ubuntu) (gcc version 5.4.0 (Ingenic Ingenic r3.3.0-gcc540 Smaller Size 2023.05-22) ) #23 PREEMPT Mon Aug 12 07:41:50 UTC 2024
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU0 RESET ERROR PC:11D0041C
+[    0.000000] CPU0 revision is: 00d00100 (Ingenic Xburst)
+[    0.000000] FPU revision is: 00b70000
+[    0.000000] cgu_vpu clk should be opened!
+[    0.000000] CCLK:1188MHz L2CLK:594Mhz H0CLK:200MHz H2CLK:200Mhz PCLK:100Mhz
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 0049c000 @ 00010000 (usable)
+[    0.000000]  memory: 00034000 @ 004ac000 (usable after init)
+[    0.000000] User-defined physical RAM map:
+[    0.000000]  memory: 02e00000 @ 00000000 (usable)
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x00000000-0x02dfffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x00000000-0x02dfffff]
+[    0.000000] Primary instruction cache 16kB, 8-way, VIPT, linesize 32 bytes.
+[    0.000000] Primary data cache 16kB, 8-way, VIPT, no aliases, linesize 32 bytes
+[    0.000000] pls check processor_id[0x00d00100],sc_jz not support!
+[    0.000000] MIPS secondary cache 64kB, 8-way, linesize 32 bytes.
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 11684
+[    0.000000] Kernel command line: console=ttyS1,115200n8 mem=46M@0x0 rmem=18M@0x2e00000 init=/linuxrc rootfstype=squashfs root=/dev/mtdblock5 rw mtdparts=jz_sfc:256k(UBT),32k@224k(ENV),32k@0x40000(N/A),32k@0x40000(N/A),1664k(K),1024k(RT),256k(CFG),4960k(USR),8m@0(SFC)
+[    0.000000] PID hash table entries: 256 (order: -2, 1024 bytes)
+[    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Memory: 41112k/47104k available (3586k kernel code, 5992k reserved, 1129k data, 208k init, 0k highmem)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS:347
+[    0.000000] clockevents_config_and_register success.
+[    0.000020] Calibrating delay loop... 1185.38 BogoMIPS (lpj=5926912)
+[    0.087810] pid_max: default: 32768 minimum: 301
+[    0.092704] Mount-cache hash table entries: 512
+[    0.097741] Initializing cgroup subsys debug
+[    0.101998] Initializing cgroup subsys freezer
+[    0.108782] regulator-dummy: no parameters
+[    0.113020] NET: Registered protocol family 16
+[    0.129198] bio: create slab <bio-0> at 0
+[    0.135332] jz-dma jz-dma: JZ SoC DMA initialized
+[    0.140326] usbcore: registered new interface driver usbfs
+[    0.145950] usbcore: registered new interface driver hub
+[    0.151380] usbcore: registered new device driver usb
+[    0.156626]  (null): set:249  hold:250 dev=100000000 h=500 l=500
+[    0.162762]  (null): set:61  hold:62 dev=100000000 h=125 l=125
+[    0.170494] Switching to clocksource jz_clocksource
+[    0.175444] cfg80211: Calling CRDA to update world regulatory domain
+[    0.182456] NET: Registered protocol family 2
+[    0.187364] TCP established hash table entries: 512 (order: 0, 4096 bytes)
+[    0.194321] TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+[    0.200719] TCP: Hash tables configured (established 512 bind 512)
+[    0.207059] TCP: reno registered
+[    0.210258] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.216221] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.222766] NET: Registered protocol family 1
+[    0.227414] RPC: Registered named UNIX socket transport module.
+[    0.233411] RPC: Registered udp transport module.
+[    0.238112] RPC: Registered tcp transport module.
+[    0.242896] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.249726] freq_udelay_jiffys[0].max_num = 10
+[    0.254196] cpufreq 	udelay 	loops_per_jiffy	
+[    0.258568] 12000	 59867	 59867	
+[    0.261834] 24000	 119735	 119735	
+[    0.265290] 60000	 299338	 299338	
+[    0.268720] 120000	 598677	 598677	
+[    0.272298] 200000	 997796	 997796	
+[    0.275784] 300000	 1496694	 1496694	
+[    0.279492] 600000	 2993389	 2993389	
+[    0.283221] 792000	 3951274	 3951274	
+[    0.286909] 1008000	 5028895	 5028895	
+[    0.290705] 1200000	 5986779	 5986779	
+[    0.299058] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.305880] jffs2: version 2.2. Â© 2001-2006 Red Hat, Inc.
+[    0.311723] msgmni has been set to 80
+[    0.317319] io scheduler noop registered
+[    0.321246] io scheduler cfq registered (default)
+[    0.326144] jz-pwm jz-pwm: period_ns:max=2730666,min=42
+[    0.331646] wait stable.[288][cgu_vpu]
+[    0.335445] cgu_vpu can not set to 450000000, will change!!!
+[    0.342633] jz-uart.1: ttyS1 at MMIO 0x10031000 (irq = 58) is a uart1
+[    0.350339] console [ttyS1] enabled, bootconsole disabled
+[    0.350339] console [ttyS1] enabled, bootconsole disabled
+[    0.365525] brd: module loaded
+[    0.370789] loop: module loaded
+[    0.374739] zram: Created 2 device(s) ...
+[    0.378974] logger: created 256K log 'log_main'
+[    0.401951] jz SADC driver registeres over!
+[    0.406730] jz TCU driver register completed
+[    0.411618] the id code = 204017, the flash name is XM25QH64C
+[    0.417612] jz-sfc jz-sfc: sfc use DMA mode
+[    0.421958] jz-sfc jz-sfc: nor flash now use standard mode!
+[    0.427726] JZ SFC Controller for SFC channel 0 driver register
+[    0.433885] 9 cmdlinepart partitions found on MTD device jz_sfc
+[    0.440012] Creating 9 MTD partitions on "jz_sfc":
+[    0.444988] 0x000000000000-0x000000040000 : "UBT"
+[    0.450420] 0x000000038000-0x000000040000 : "ENV"
+[    0.455852] 0x000000040000-0x000000048000 : "N/A"
+[    0.461222] 0x000000040000-0x000000048000 : "N/A"
+[    0.466654] 0x000000048000-0x0000001e8000 : "K"
+[    0.471943] 0x0000001e8000-0x0000002e8000 : "RT"
+[    0.477234] 0x0000002e8000-0x000000328000 : "CFG"
+[    0.482679] 0x000000328000-0x000000800000 : "USR"
+[    0.488085] 0x000000000000-0x000000800000 : "SFC"
+[    0.493530] SPI NOR MTD LOAD OK
+[    0.496840] tun: Universal TUN/TAP device driver, 1.6
+[    0.502114] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[    0.508637] wait stable.[288][cgu_macphy]
+[    0.512844] Bus Mode Reg after reset: 0x00020101, cnt=0
+[    0.532329] libphy: jz_mii_bus: probed
+[    0.536280] =======>gmacdev = 0x821f0200<================
+[    0.541951] =========>gmacdev->MacBase = 0xb34b0000 DmaBase = 0xb34b1000
+[    0.548891] Bus Mode Reg after reset: 0x00020101, cnt=0
+[    0.556286] jz_mac jz_mac.0: JZ on-chip Ethernet MAC driver, Version 1.0
+[    0.563427] usbcore: registered new interface driver zd1201
+[    0.569314] DWC IN OTG MODE
+[    0.572991] dwc2 dwc2: Keep PHY ON
+[    0.576518] dwc2 dwc2: Using Buffer DMA mode
+[    0.580939] dwc2 dwc2: Core Release: 3.00a
+[    0.585257] dwc2 dwc2: DesignWare USB2.0 High-Speed Host Controller
+[    0.591770] dwc2 dwc2: new USB bus registered, assigned bus number 1
+[    0.599128] hub 1-0:1.0: USB hub found
+[    0.603083] hub 1-0:1.0: 1 port detected
+[    0.607288] dwc2 dwc2: DWC2 Host Initialized
+[    0.611822] i2c /dev entries driver
+[    0.615940] cgu_msc0 can not set to 24000000, will change!!!
+[    0.621825] jzmmc_v1.2 jzmmc_v1.2.0: vmmc regulator missing
+[    0.627892] jzmmc_v1.2 jzmmc_v1.2.0: register success!
+[    0.633539] TCP: cubic registered
+[    0.636977] NET: Registered protocol family 17
+[    0.642000] soc_vpu probe success,version:1.0.0-03203fd46d
+[    0.647895] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    0.655282] drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
+[    0.665940] VFS: Mounted root (squashfs filesystem) readonly on device 31:5.
+[    0.673660] Freeing unused kernel memory: 208K (804ac000 - 804e0000)
+[    0.685250] dwc2 dwc2: ID PIN CHANGED!
+                                                              
+                     +DO:                                     
+                    7I:,+I,,O?                                
+                     M,::::,ZI                                
+                      D8,:N8                                  
+                       88M=                                   
+                       7:                                     
+                   ,~++ZZ+=:                                  
+             :ZMO?:,,,,,,,,,:~8DNI                            
+            8N?,,,::::::::::::,,:ZMI                          
+         8O::::::::::::::::::::::::,=MI                       
+        N7,::::::::::::::::::::::::::,DZ                      
+      DI,::::::::::::::::::::::::::::::,87                    
+     I8,::::::::::::::::::::::::::::::::,M:                   
+    O?,::::::::::::::::::::::::::::::::::,87                  
+  ,:D,::~~::::::::::::::::::::::::::::::::,D:                 
+   M::,7MMMI,:::::::::::::~NNNI,:::::::::::~N                 
+ ,~D,:=MNNNM78888888888887MNNNM?:::::::::::,D,   ,~           
+ :?8::,MNNNN,,,,,,,,,,,,,,NNNNM~::::::::::::8?  +N8N   ~~,    
+ ~77::::,:,::::::::::::::::,=:,:::::::::::::I7  D,: MM:,,I7~  
+ ~77:::::::::::::::::::::::::::~::::::::::::I7  M,:,M~:::~O+  
+ ,~O,~~~~~::::::::::::::::::::~~~~::::::::::+Z  D~::::,,78    
+   M,::~:::::::::::::::::::::::::::::::::::::D  8~::::8NO~    
+   Z?:::::::::::::::::::::::::::::::::::::::,D: M,:,N?        
+   :N,:::::::::::::::::::::::::::::::::::::::?8:D,,8Z         
+    ,M,:::::::::::::::::::::::::::::::::::::::,,,:M           
+     =M,::::::::::::::::::::::::::::::::::::::::,M:           
+       :MI,,                        ,::::::::,=M~             
+         8N                            ,::::,8M,              
+            +MO=                        +OM7                  
+              ~ZMD8I+:            ~+8ZMM8~                    
+                                                              
+mount all file system...
+mdev is ok......
+starting mdev...
+
+
+(none) login: [    1.476188] device <tmi8152> not found 
+[    1.487354] device <tmi8152> not found 
+insmod: can't insert '/usr/modules/tmi8152_spi-gpio.ko': No such device
+using gpio motor controller
+[    1.602056] i2c i2c-0: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    1.609184] i2c i2c-0: --I2C txabrt:
+[    1.882065] i2c i2c-0: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    1.889194] i2c i2c-0: --I2C txabrt:
+[    2.253402] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.260529] i2c i2c-1: --I2C txabrt:
+[    2.353400] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.360528] i2c i2c-1: --I2C txabrt:
+[    2.453400] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.460527] i2c i2c-1: --I2C txabrt:
+[    2.553419] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.560547] i2c i2c-1: --I2C txabrt:
+[    2.653399] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.660527] i2c i2c-1: --I2C txabrt:
+[    2.666133] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.673632] i2c i2c-1: --I2C txabrt:
+[    2.684259] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.691393] i2c i2c-1: --I2C txabrt:
+[    2.697041] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.704698] i2c i2c-1: --I2C txabrt:
+[    2.709943] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.717553] i2c i2c-1: --I2C txabrt:
+[    2.803402] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.810530] i2c i2c-1: --I2C txabrt:
+[    2.903402] i2c i2c-1: i2c_jz_irq 441, I2C transfer error, ABORT interrupt
+[    2.910530] i2c i2c-1: --I2C txabrt:
+insmod: can't insert '/usr/modules/sensor_gc1084_t23.ko': No such device
+insmod: can't insert '/usr/modules/sensor_mis20c1_t23.ko': No such device
+insmod: can't insert '/usr/modules/sensor_sc2337p_t23.ko': No such device
+[    4.175746] [atbm_log]:atbm_usb_module_init 0
+[    4.185001] [atbm_log]:platform_init(252)
+[    4.189222] [atbm_log]:SVN_VER=3352,DPLL_CLOCK=2,BUILD_TIME=2024-04-17_10:26:57
+mount: mounting /dev/mmcblk0p1 on /mnt failed: No such file or directory
+mount: mounting /dev/mmcblk0 on /mnt failed: No such file or directory
+
+
+    firmware infomation
+
+    +-----------------------------------------------------------[    5.327925] watchdog watchdog0: watchdog did not stop!
+---------------------+
+
+    |                              chipset  |  t23                                   |
+
+    |                             solution  |  tuya                                  |
+
+    +--------------------------------------------------------------------------------[    5.359125] watchdog watchdog0: watchdog did not stop!
++
+
+    |                              version  |  1.4.8                                 |
+
+    |                           build time  |  18:50:33 Feb 20 2025                  |
+
+    +-----[    5.380196] [atbm_log]:atbm_usb_module_exit g_dvobj   (null) wifi_usb_probe_doing 0
+----------------------------------------------------------------[    5.393093] watchdog watchdog0: watchdog did not stop!
+-----------+
+
+
+
+[32m[00:00:00.001|    info|        ] [0mprob[    5.404317] watchdog watchdog0: watchdog did not stop!
+e pcba board 0 according dtb
+
+[32m[00:00:00.002|    info|     [    5.414828] [atbm_log]:wifi_tx_urb_pending(0)
+   ] [0mPCBA suppose to be <JS60501>.
+
+[32m[00:00:00.048|    [    5.424925] [atbm_log]:wifi_tx_urb_pending(0)
+info|        ] [0mchipset <T23> probe usb-device
+
+[31m[00:00:[    5.435034] [atbm_log]:atbm_usb_rmmod_sync loop  0!!!!!!!!
+00.079|   alert|        ] [0mwatch-dog enable with 12s timeout.[    5.446229] [atbm_log]:atbm_usb_exit!!!
+
+
+[    5.455803] [atbm_log]:atbm_usb_exit+++++++
+[    5.460475] [atbm_log]:atbm_usb_exit:usb_deregister
+[    5.467894] [atbm_log]:atbm_usb_exit---------
+[    5.472714] [atbm_log]:ieee80211_iface_exit
+[    5.504400] [atbm_log]:atbm_usb_module_exit--0
+[37m[00:00:00.189|   debug|        ] [0mdokodemo(rmmod /usr/modules//atbm603x_HT20.ko)=9
+
+[37m[00:00:00.699|   debug|        ] [0mdokodemo(lsusb > /tmp/enumerate_usb_devices-9383.txt)=9
+
+[37m[00:00:01.206|   debug|        ] [0mdokodemo(lsusb > /tmp/enumerate_usb_devices-0886.txt)=9
+
+[37m[00:00:01.713|   debug|        ] [0mdokodemo(lsusb > /tmp/enumerate_usb_devices-2777.txt)=9
+
+[37m[00:00:02.214|   debug|        ] [0menumerate usb device 2 time 1.522s
+
+rmmod: can't unload module 'atbm603x_HT20': No such file or directory
+[37m[00:00:02.220|   debug|        ] [0mdokodemo(rmmod /usr/modules//atbm603x_HT20.ko)=9,Bad file descriptor
+
+[37m[00:00:02.222|   debug|        ] [0musb device enumarate 2.
+
+[37m[00:00:02.222|   debug|        ] [0menumarate usb device[0] vendor=007a product=888b.
+
+[37m[00:00:02.222|   debug|        ] [0menumarate usb device[1] vendor=1d6b product=0002.
+
+[37m[00:00:02.223|   debug|        ] [0mdb memory get heap size 1048576
+
+ifconfig: SIOCGIFFLAGS: No such device
+[37m[00:00:02.250|   debug|        ] [0mdokodemo(ifconfig wlan0 down)=9,Bad file descriptor
+
+rmmod: can't unload module 'atbm603x_HT20': No such file or directory
+[37m[00:00:02.262|   debug|        ] [0mdokodemo(rmmod /usr/modules//atbm603x_HT20.ko)=9,Bad file descriptor
+
+[37m[00:00:02.292|   debug|        ] [0mdb memory put heap size 1048576
+
+[37m[00:00:02.292|   debug|        ] [0mdb memory get heap size 1048576
+
+[37m[00:00:02.294|   debug|        ] [0mdb memory put heap size 1048576
+
+[33m[00:00:02.321| warning|        ] [0maux_ir_use_soft_ps_anyka() skipped for chipset <T23>
+
+[32m[00:00:02.321|    info|        ] [0maux_ir_use_soft_ps_t23(1400000,20000,38)
+
+[33m[00:00:02.322| warning|        ] [0mno motor devices found.
+
+[33m[00:00:02.322| warning|        ] [0m"ddrv_motor.c:921" Condition ( "((_motor_fd[0] > 0 || _motor_fd[1] > 0) || (0))" ) Failed.
+
+[33m[00:00:02.323| warning|        ] [0mipc_core::video::input::set_option(0,19) skipped
+
+[37m[00:00:02.323|   debug|        ] [0m0 1920X1080
+
+[37m[00:00:02.429|   debug|        ] [0mAudio In GetPubAttr samplerate : 16000
+
+[37m[00:00:02.430|   debug|        ] [0mAudio In GetPubAttr     frmNum : 40
+
+[37m[00:00:02.430|   debug|        ] [0mAudio In GetPubAttr  numPerFrm : 640
+
+[37m[00:00:02.430|   debug|        ] [0mAudio In GetPubAttr     chnCnt : 1
+
+[37m[00:00:02.897|   debug|        ] [0mAudio In GetChnParam usrFrmDepth : 40
+
+warn: shm_init,53shm init already
+[33m[00:00:03.101| warning|        ] [0mdog is fasting
+
+modprobe: can't open 'modules.dep': No such file or directory
+[37m[00:00:03.281|   debug|        ] [0mdokodemo(modprobe cfg80211)=9,Bad file descriptor
+
+[37m[00:00:03.293|   debug|        ] [0mdokodemo(modprobe mac80211  2>/dev/null)=9,Bad file de[    8.621717] watchdog watchdog0: watchdog did not stop!
+scriptor
+
+[32m[00:00:03.295|    info|        ] [0mProbe sensor(sc2331, 1920x1080) success
+
+[37m[00:00:03.315|   debug|        ] [0mdokodemo(modprobe usb-common  2>/dev/null)=9,Bad file descriptor
+
+[37m[00:00:03.322|   debug|        ] [0mdokodemo(modprobe usbcore  2>/dev/null)=9,Bad file descriptor
+
+[37m[00:00:03.333|   debug|        ] [0mdokodemo(modprobe ak_hcd  2>/dev/null)=9,Bad file descriptor
+
+i264e[info]: profile High, level 4.0
+EncoderSuperFrmCfg.superFrmMode = 2 
+
+EncoderSuperFrmCfg.superIFrmBitsThr = 150000 
+
+EncoderSuperFrmCfg.superPFrmBitsThr = 107142 
+
+EncoderSuperFrmCfg.superBFrmBitsThr = 115384 
+
+EncoderSuperFrmCfg.rcPriority = 1 
+
+[37m[00:00:03.336|   debug|        ] [0mIMP_OSD_CreateGroup(1)
+
+i264e[info]: profile High, level 2.2
+EncoderSuperFrmCfg.superFrmMode = 2 
+
+EncoderSuperFrmCfg.superIFrmBitsThr = 50000 
+
+EncoderSuperFrmCfg.superPFrmBitsThr = 35714 
+
+EncoderSuperFrmCfg.superBFrmBitsThr = 38461 
+
+EncoderSuperFrmCfg.rcPriority = 1 
+
+[37m[00:00:03.346|   debug|        ] [0mdb memory get heap size 1048576[37m[00:00:03.351|   debug|        ] [0mdokodemo(lsusb > /tmp/enumerate_usb_devices-6915.txt)=9[37m[00:00:03.354|   debug|        ] [0mIMP_ISP_Tuning_SetBrightness(50)
+
+
+
+[37m[00:00:03.355|   debug|        ] [0mIMP_ISP_Tuning_SetSharpness(50)
+
+[37m[00:00:03.356|   debug|        ] [0mIMP_ISP_Tuning_SetContrast(50)
+
+[37m[00:00:03.356|   debug|        ] [0mIMP_ISP_Tuning_SetSaturation(50)
+
+[37m[00:00:03.356|   debug|        ] [0mIMP_ISP_Tuning_SetBcshHue(50)
+
+[37m[00:00:03.357|   debug|        ] [0mipc_core::video::input::set_deflicker(0)
+
+[0m[00:00:03.358|  debug2|        ] [0mlimit ISP fps 20
+
+
+
+[37m[00:00:03.360|   debug|        ] [0mdb memory put heap size 1048576
+
+
+
+    tuya trinity
+
+    +--------------------------------------------------------------------------------+
+
+    |                                 uuid  |  szjs3aa6adae0e9b0b5b                  |
+
+    |                                  key  |  gQsS9CqbxKQ0AvBR7FAqyjDhzXVRhDiV      |
+
+    |                                  pid  |  beooalf0dref5iew                      |
+
+    +--------------------------------------------------------------------------------+
+
+
+
+[32m[00:00:03.366|    info|        ] [0mtuya_adapter_wifi_get_mac(4c:37:de:ab:35:cf)
+
+    000000000     4c 37 de ab 35 cf                                  | L7..5........... | 
+
+[0m[00:00:03.368|  debug2|        ] [0mtuya_adapter_wifi_get_mac(0, 4C-37-DE-AB-35-CF)
+
+[32m[00:00:03.486|    info|        ] [0mFirmware Version <1.4.8>
+
+[33m[00:00:03.565| warning|        ] [0m__video_encode_buffer:814 error( IMP_Encoder_PollingStream(index, 200) = -1 ).
+
+[33m[00:00:03.566| warning|        ] [0mIMP_Encoder_PollingStream(1) failure
+
+[33m[00:00:03.566| warning|        ] [0m__video_encode_buffer:814 error( IMP_Encoder_PollingStream(index, 200) = -1 ).
+
+[33m[00:00:03.567| warning|        ] [0mIMP_Encoder_PollingStream(0) failure
+
+[01-01 18:12:15 TUYA D][tuya_ws_db.c:450] init fs. Path: /mnt/config/ 
+
+[01-01 18:12:15 TUYA I][kv_storge.c:45] Init Kvs With File:/mnt/config/
+
+[01-01 18:12:15 TUYA D][simplekv.c:945] path:/mnt/config/
+
+[01-01 18:12:15 TUYA D][simplekv.c:981] get encrypt_key[£—¢US¾ñüùykRéâ]
+
+[01-01 18:12:15 TUYA D][simplekv.c:1012] both file exist
+
+[01-01 18:12:15 TUYA D][simplekv.c:310] size in: 0 and final: 28700 And mag_rec_max: 512
+
+[01-01 18:12:15 TUYA D][simplekv.c:325] create data hd success
+
+[01-01 18:12:15 TUYA D][simplekv.c:1055] read from normal file
+
+[01-01 18:12:15 TUYA D][simplekv.c:765] curr db is V2. No need to upgrade
+
+[01-01 18:12:15 TUYA D][simplekv.c:555] head check success
+
+[01-01 18:12:15 TUYA D][simplekv.c:658] read and check head success
+
+[01-01 18:12:15 TUYA D][simplekv.c:1075] read from normal file success
+
+[01-01 18:12:15 TUYA I][uni_thread.c:228] thread_create name:sys_timer,stackDepth:4096,totalstackDepth:4096,priority:5
+
+[01-01 18:12:15 TUYA D][simplekv.c:1111] init from normal file success.
+
+[01-01 18:12:15 TUYA I][mqc_app.c:350] mqc app init ...
+
+[01-01 18:12:15 TUYA I][uni_thread.c:228] thread_create name:cmmod,stackDepth:4096,totalstackDepth:8192,priority:4
+
+[01-01 18:12:15 TUYA D][mqc_app.c:144] mq_pro:5 cnt:1
+
+[01-01 18:12:15 TUYA D][mqc_app.c:144] mq_pro:31 cnt:2
+
+[01-01 18:12:15 TUYA D][svc_online_log.c:295] svc online log init success
+
+[01-01 18:12:15 TUYA E][log_seq.c:863] open err
+
+[01-01 18:12:15 TUYA I][uni_thread.c:228] thread_create name:wk_th-0,stackDepth:5120,totalstackDepth:13312,priority:3
+
+[01-01 18:12:15 TUYA D][simplekv.c:1211] read key:gw_bi isFuzzy:0 skipCnt:0
+
+[01-01 18:12:15 TUYA D][simplekv.c:1251] find key:0 gw_bi
+
+[01-01 18:12:15 TUYA D][simplekv.c:1280] key:gw_bi find value.Len:256
+
+[01-01 18:12:15 TUYA D][ws_db_gw.c:208] gw base read finish:0
+
+[01-01 18:12:15 TUYA D][tuya_bt_sdk.c:92] ty bt cmmod regist ok:1
+
+uuid: 20
+
+73 7a 6a 73 33 61 61 36 61 64 61 65 30 65 39 62 30 62 35 62 
+
+devid_tmp: 16
+
+72 34 dc 0c a2 86 28 d2 8e 00 e2 4b 00 b1 4b ff 
+
+devid_tmp2: 20
+
+73 7a 6a 73 33 61 61 36 61 64 61 65 30 65 39 62 30 62 35 62 
+
+[01-01 18:12:15 TUYA D][tuya_ble_api.c:315] upd adv para, send conn_req beacon.
+
+dev id key: 16
+
+d4 1d 8c d9 8f 00 b2 04 e9 80 09 98 ec f8 42 7e 
+
+[01-01 18:12:15 TUYA I][bt_ext_porting.c:157] [TUYA-BTUART]tuya ext bt port init
+
+[01-01 18:12:15 TUYA N][bt_ext_porting.c:321] [TUYA-BTUART]already inited
+
+[01-01 18:12:15 TUYA N][tuya_ble_api.c:650] ble sdk re_inited
+
+[01-01 18:12:15 TUYA D][tuya_ble_active.c:523] bt active init
+
+[01-01 18:12:15 TUYA N][tuya_bt_sdk.c:141] ty bt sdk init success finish
+
+[0m[00:00:03.727|  debug2|        ] [0mtuya_adapter_wifi_get_mac(0, 4C-37-DE-AB-35-CF)
+
+Set Country Code:(null) 
+
+[01-01 18:12:15 TUYA E][tuya_ipc_hardware_info.c:172] NO sensor info. Please check if you need.
+
+uuid: 20
+
+73 7a 6a 73 33 61 61 36 61 64 61 65 30 65 39 62 30 62 35 62 
+
+dev_id_tmp: 16
+
+72 34 dc 0c a2 86 28 d2 8e 00 e2 4b 00 b1 4b ff 
+
+dev_id_tmp2: 20
+
+73 7a 6a 73 33 61 61 36 61 64 61 65 30 65 39 62 30 62 35 62 
+
+[32m[00:00:03.735|    info|        ] [0mtuya_adapter_wifi_set_work_mode(2)
+
+[33m[00:00:03.735| warning|        ] [0mhard-code tuya_adapter_wifi_set_work_mode() @552
+
+[0m[00:00:03.735|  debug2|        ] [0mtracking tuya_adapter_wifi_station_connect() /home/davis/work/project/doraemon/application/ipc_tuya/tuya_demo/src/tuya_ipc_wifi_demo.c@54
+
+[01-01 18:12:15 TUYA E][httpc.c:551] tcp connect failed a1-eu.lifeaiot.com:443 errno=128
+
+[01-01 18:12:15 TUYA E][http_inf.c:51] Open session failed: https://a1-eu.lifeaiot.com/d.json?a=tuya.device.timer.count&devId=bf17b2fdbb21f25d65igzj&et=1&t=0&v=4.2&sign=eab3de72896db06c7eed2f0e45ab4cb1 (-7)
+
+[01-01 18:12:15 TUYA E][iot_httpc.c:1187] Post Data Return Fail.-2050
+
+[32m[00:00:03.736|    info|        ] [0mtuya register status 2
+
+[32m[00:00:03.739|    info|        ] [0mset dp(TUYA_DP_LIGHT)=1
+
+[32m[00:00:03.740|    info|        ] [0mset dp(TUYA_DP_BLUB_SWITCH)=0
+
+[32m[00:00:03.740|    info|        ] [0mset dp(TUYA_DP_SLEEP_MODE)=0
+
+[01-01 18:12:15 TUYA E][tuya_ipc_p2p.c:6342] The Transfer Module not Inited
+
+
+[32m[00:00:03.740|    info|        ] [0mset dp(TUYA_DP_PATROL_SWITCH)=0
+
+[32m[00:00:03.741|    info|        ] [0mset dp(TUYA_DP_FLIP)=0
+
+[32m[00:00:03.741|    info|        ] [0mset dp(TUYA_DP_WATERMARK)=1
+
+[33m[00:00:03.742| warning|        ] [0mbypass TUYA_DP_NIGHT_MODE=0 TUYA_DP_NIGHTVISION_MODE=1
+
+[0m[00:00:03.742|  debug2|        ] [0mreport dp(TUYA_DP_NIGHTVISION_MODE)=<1>
+
+[01-01 18:12:15 TUYA E][smart_frame.c:564] devid:(null) dparr[0]:124 not find
+
+[0m[00:00:03.743|  debug2|        ] [0mreport dp(TUYA_DP_BASIC_SHIMMER)=0
+
+[01-01 18:12:15 TUYA E][smart_frame.c:564] devid:(null) dparr[0]:180 not find
+
+[32m[00:00:03.743|    info|        ] [0mset dp(TUYA_DP_NIGHT_MODE)=0
+
+[33m[00:00:03.743| warning|        ] [0mbypass TUYA_DP_NIGHTVISION_MODE=1 TUYA_DP_NIGHT_MODE=0
+
+[0m[00:00:03.744|  debug2|        ] [0mreport dp(TUYA_DP_NIGHT_MODE)=<0>
+
+[32m[00:00:03.744|    info|        ] [0mset dp(TUYA_DP_NIGHTVISION_MODE)=1
+
+[32m[00:00:03.744|    info|        ] [0mset dp(TUYA_DP_ALARM_FUNCTION)=1
+
+[32m[00:00:03.745|    info|        ] [0mset dp(TUYA_DP_ALARM_SENSITIVITY)=0
+
+[32m[00:00:03.745|    info|        ] [0mset dp(TUYA_DP_SD_RECORD_ENABLE)=1
+
+[32m[00:00:04.078|    info|        ] [0mset dp(TUYA_DP_SD_RECORD_MODE)=1
+
+[32m[00:00:04.078|    info|        ] [0mset dp(TUYA_DP_TRACK_ENABLE)=1
+
+[32m[00:00:04.078|    info|        ] [0mset dp(TUYA_DP_ONVIF_SWITCH)=0
+
+[32m[00:00:04.079|    info|        ] [0mset dp(TUYA_DP_ONVIF_PW_CHANGED)=0
+
+[37m[00:00:04.079|   debug|        ] [0mrenew Onvif static ip <>
+
+[37m[00:00:03.863|   debug|        ] [0mdokodemo(lsusb > /tmp/enumerate_usb_devices-7793.txt)=9
+
+ifconfig: SIOCGIFFLAGS: No such device
+[37m[00:00:04.092|   debug|        ] [0mdokodemo(ifconfig wlan0:1 down)=9,Bad file descriptor
+
+[0m[00:00:04.106|  debug2|        ] [0mreport dp(TUYA_DP_ONVIF_IPADDR)=<>
+
+[01-01 18:12:15 TUYA E][smart_frame.c:564] devid:(null) dparr[0]:235 not find
+
+[32m[00:00:04.106|    info|        ] [0mset dp(TYUA_DP_ONVIF_IPTYPE)=1
+
+[37m[00:00:04.107|   debug|        ] [0mipc_core::video::input::set_deflicker(60)
+
+[32m[00:00:04.107|    info|        ] [0mset dp(TUYA_DP_ANTI_FLICKER)=2
+
+[32m[00:00:04.108|    info|        ] [0mset dp(TUYA_DP_EFFECT_SHARP)=50
+
+[37m[00:00:04.108|   debug|        ] [0mIMP_ISP_Tuning_SetSharpness(50)
+
+[32m[00:00:04.109|    info|        ] [0mset dp(TUYA_DP_EFFECT_CONTRAST)=50
+
+[37m[00:00:04.109|   debug|        ] [0mIMP_ISP_Tuning_SetContrast(50)
+
+[32m[00:00:04.110|    info|        ] [0mset dp(TUYA_DP_EFFECT_BRIGHTNESS)=50
+
+[37m[00:00:04.110|   debug|        ] [0mIMP_ISP_Tuning_SetBrightness(50)
+
+[32m[00:00:04.110|    info|        ] [0mset dp(TUYA_DP_OBJECT_OUTLINE)=1
+
+[37m[00:00:04.111|   debug|        ] [0mdb memory get heap size 1048576
+
+[32m[00:00:04.113|    info|        ] [0mset dp(TUYA_DP_ALARM_ZONE_DRAW)=<0,0,100,100>
+
+[37m[00:00:04.114|   debug|        ] [0mupdate detection roi (0, 0, 100, 100)
+
+[37m[00:00:04.114|   debug|        ] [0mdb memory put heap size 1048576
+
+[32m[00:00:04.115|    info|        ] [0mset dp(TUYA_DP_FLOODLIGHT_LIGHTNESS)=50
+
+[32m[00:00:04.115|    info|        ] [0mset dp(TUYA_DP_BASIC_SHIMMER)=0
+
+[32m[00:00:04.116|    info|        ] [0mset dp(TUYA_DP_ACCESSORY_LOCK)=0
+
+[32m[00:00:04.116|    info|        ] [0mset dp(TUYA_DP_AUDIO_INPUT_GAIN)=60
+
+[32m[00:00:04.147|    info|        ] [0mset dp(TUYA_DP_SOUND_DETECT)=1
+
+[32m[00:00:04.148|    info|        ] [0mset dp(TUYA_DP_PET_DETECTION)=0
+
+[32m[00:00:04.148|    info|        ] [0mset dp(TUYA_DP_ALARM_VEHICLE)=0
+
+[32m[00:00:04.149|    info|        ] [0mtuya_ipc_set_service_time(1751024125, timezone)
+
+[37m[00:00:04.154|   debug|        ] [0mstart pusing video streaming(1)
+
+[37m[00:00:04.155|   debug|        ] [0mstart pusing video streaming(0)
+
+[37m[00:00:04.284|   debug|        ] [0mipc_core::video::input::soft_ps::start(1400000, 20000, 38)
+
+[37m[00:00:04.581|   debug|        ] [0menumerate usb device 2 time 1.248s
+
+[    9.933597] [atbm_log]:atbm_usb_module_init 0
+[    9.944250] [atbm_log]:platform_init(251)
+[    9.951263] [atbm_log]:SVN_VER=3352,DPLL_CLOCK=2,BUILD_TIME=2024-04-17_10:26:57
+[    9.965152] [atbm_log]:atbm_usb_probe : idVendor[7a] idProduct[888b] 
+[    9.973366] [atbm_log]:AsmLite probe!
+[    9.977186] [atbm_log]:Probe called -1 v1
+[    9.981450] [atbm_log]:not CONFIG_USE_DMA_ADDR_BUFFER
+[    9.987638] [atbm_log]:CONFIG_TX_NO_CONFIRM
+[    9.992369] [atbm_log]:ble_spin_lock init 
+[    9.996618] [atbm_log]:Allocated hw_priv @ 8209ef00
+[   10.007954] [atbm_log]: wait_event_interruptible from  send_prbresp_wq
+[   10.015216] [atbm_log]:atbmwifi USB_USE_TASTLET_TXRX enable (8209ef00)
+[   10.023331] [atbm_log]:atbmwifi USB_USE_TASTLET_TXRX enable (8209ef00)
+[   10.031710] [atbm_log]:Get 6012B-X UID Success!!support BLE
+[   10.038099] [atbm_log]:atbm_get_chiptype, chipver=0x4a, g_wifi_chip_type[12]
+[   10.049894] [atbm_log]:atbm_before_load_firmware++
+[   10.058886] [atbm_log]:+++++++++++++++++1.1v++++++++++++++++++
+[   10.065827] [atbm_log]:===================~_~====================
+[   10.073359] [atbm_log]:atbm_start_load_firmware++
+[   10.078354] [atbm_log]:
+[   10.078354] ======>>> load WIFI BLE COMB firmware <<<======
+[   10.078354] 
+[   10.091176] [atbm_log]:START DOWNLOAD ICCM=========
+[   10.096810] [atbm_log]:atbm_load_firmware_generic: addr 10000: len 15000
+[   10.275560] [atbm_log]:START DOWNLOAD DCCM=========
+[   10.280731] [atbm_log]:atbm_load_firmware_generic: addr 800000: len a000
+[   10.371645] [atbm_log]:START DOWNLOAD SRAM=========
+[   10.377109] [atbm_log]:atbm_load_firmware_generic: addr 9009000: len d000
+[   10.487684] [atbm_log]:atbm_after_load_firmware++
+[   10.495113] [atbm_log]:usb:try to flush rx....
+[   10.592000] [atbm_log]:flush rx[-145][0]
+[   10.596202] [atbm_log]:ARES_A:after_load_firmware
+[   10.601383] [atbm_log]:0x1610102c=0x40a0e
+[   10.609478] [atbm_log]:0x1610102c=0x10a0f
+[   10.615971] [atbm_log]:0x16101000=0x8000e08
+[   10.620969] [atbm_log]:set_block_size=256
+[   10.625520] [atbm_log]:firmwareCap f1a9
+[   10.629544] [atbm_log]:firmwareCap2 1184
+[   10.633629] [atbm_log]:wsm_caps.firmwareCap 1184f1a9 4
+[   10.638787] [atbm_log]:apollo wifi WSM init done.
+[   10.638787]    Input buffers: 6 x 1648 bytes
+[   10.638787]    Hardware: 7.0
+[   10.638787]    WSM firmware [=MODEM==USB=+BLE+Dec  6 2023 18:06:54], ver: 19040, build: 4253, api: 1060, cap: 0x1184F1A9 Config[8030408]  expection 9002fdc, ep0 cmd addr 0 NumOfStations[8] NumOfInterfaces[3]
+[   10.670607] [atbm_log]:EFUSE(8)				[0]
+[   10.674539] [atbm_log]:EFUSE(I)					[0]
+[   10.678508] [atbm_log]:EFUSE(B)			[0]
+[   10.682316] [atbm_log]:CAPABILITIES_ATBM_PRIVATE_IE  [0]
+[   10.687823] [atbm_log]:CAPABILITIES_NVR_IPC  [0]
+[   10.692619] [atbm_log]:CAPABILITIES_NO_CONFIRM  [1]
+[   10.697677] [atbm_log]:CAPABILITIES_SDIO_PATCH  [0]
+[   10.702745] [atbm_log]:CAPABILITIES_NO_BACKOFF  [1]
+[   10.707793] [atbm_log]:CAPABILITIES_CFO  [0]
+[   10.712232] [atbm_log]:CAPABILITIES_AGC  [1]
+[   10.716651] [atbm_log]:CAPABILITIES_TXCAL  [1]
+[   10.721254] [atbm_log]:CAPABILITIES_MONITOR  [0]
+[   10.726045] [atbm_log]:CAPABILITIES_CUSTOM  [0]
+[   10.730735] [atbm_log]:CAPABILITIES_SMARTCONFIG  [0]
+[   10.735884] [atbm_log]:CAPABILITIES_ETF  [1]
+[   10.740303] [atbm_log]:CAPABILITIES_LMAC_RATECTL  [1]
+[   10.745541] [atbm_log]:CAPABILITIES_LMAC_TPC  [1]
+[   10.750418] [atbm_log]:CAPABILITIES_LMAC_TEMPC  [1]
+[   10.755486] [atbm_log]:CAPABILITIES_CTS_BUG  [0]
+[   10.760266] [atbm_log]:CAPABILITIES_USE_IPC  [0]
+[   10.765056] [atbm_log]:CAPABILITIES_OUTER_PA  [0]
+[   10.769929] [atbm_log]:CAPABILITIES_POWER_CONSUMPTION  [0]
+[   10.775620] [atbm_log]:CAPABILITIES_RSSI_DECIDE_TXPOWER  [0]
+[   10.781479] [atbm_log]:CAPABILITIES_RTS_LONG_DURATION  [1]
+[   10.787168] [atbm_log]:CAPABILITIES_TX_CFO_PPM_CORRECTION  [1]
+[   10.793217] [atbm_log]:CAPABILITIES_NOISE_SET_DCXO  [0]
+[   10.798634] [atbm_log]:CAPABILITIES_CFO_DCXO_CORRECTION  [1]
+[   10.804510] [atbm_log]:CAPABILITIES_HW_CHECKSUM  [0]
+[   10.809648] [atbm_log]:CAPABILITIES_SINGLE_CHANNEL_MULTI_RX  [0]
+[   10.815883] [atbm_log]:EX_CAPABILITIES_TWO_CHIP_ONE_SOC  [1]
+[   10.821746] [atbm_log]:EX_CAPABILITIES_MANUAL_SET_AC  [0]
+[   10.827347] [atbm_log]:EX_CAPABILITIES_LMAC_BW_CONTROL  [0]
+[   10.833125] [atbm_log]:EX_CAPABILITIES_SUPPORT_TWO_ANTENNA  [1]
+[   10.839263] [atbm_log]:EX_CAPABILITIES_ENABLE_STA_REMAIN_ON_CHANNEL  [0]
+[   10.846214] [atbm_log]:EX_CAPABILITIES_ENABLE_PS  [1]
+[   10.851442] [atbm_log]:EX_CAPABILITIES_TX_REQUEST_FIFO_LINK  [0]
+[   10.857675] [atbm_log]:EX_CAPABILITIES_DRIVER_PHY_REG_INIT  [0]
+[   10.863813] [atbm_log]:EX_CAPABILITIES_DRIVER_PROCESS_BA  [0]
+[   10.869765] [atbm_log]:EX_CAPABILITIES_DRIVER_PHY_REG_INIT  [0]
+[   10.875905] [atbm_log]:EX_CAPABILITIES_DRIVER_PROCESS_BA[1]
+[   10.881682] [atbm_log]:CONFIG_PRODUCT_TEST_USE_FEATURE_ID [1]
+[   10.887641] [atbm_log]:CONFIG_PRODUCT_TEST_USE_GOLDEN_LED [1]
+[   10.909583] [atbm_log]:mdelay wait wsm_startup_done  !!
+[   10.931438] [atbm_log]:not need phy init in driver
+[   10.939656] [atbm_log]:wsm_generic_confirm:status(2)
+[   10.945249] [atbm_log]:<WARNING> wsm_write_mib fail !!! mibId=4132
+[   10.955875] [atbm_log]:efuse data is [0x1,0x3b,0x1f,0x0,0x1f,0xc,0x0,0x0,0x4c:0x37:0xde:0xab:0x35:0xcf]
+[   10.970440] [atbm_log]:apollo wifi : can't open /data/.mac.info
+[   10.977484] [atbm_log]:chip is 6012B not support HT40! 
+[   10.983858] [atbm_log]:enable sg
+[   10.989862] [atbm_log]:[wlan0] has been disabled
+[   11.012815] [atbm_log]:enable sg
+[   11.016183] [atbm_log]:[p2p0] has been disabled
+[   11.039242] [atbm_log]:ble start
+[   11.047817] [atbm_log]:[phy0-ble_recv] start
+[   11.056107] [atbm_log]:ble subscribe
+[   11.060361] [atbm_log]:[phy0-ble_xmit] start
+[   11.065744] [atbm_log]:ble_platform_probe(817d9700)
+[   11.074130] [atbm_log]:is registered as 'phy0'
+[   11.078889] [atbm_log]:apollo wifi : can't open /tmp/atbm_txpwer_dcxo_cfg.txt
+[   11.088617] [atbm_log]:apollo wifi : can't open /tmp/set_rate_power.txt
+[   11.096725] [atbm_log]:open_auto_cfo:ppm_buf:cfo 1 0 , buf_len:8 
+[   11.107441] [atbm_log]:get chip id [834][10][0] 
+[   11.113110] [atbm_log]:current chiptype 6012B-X 
+[   11.117991] [atbm_log]:[atbm_wtd]:set wtd_probe = 1
+[32m[00:00:05.800|    info|        ] [0mh/w address <4c:37:de:ab:35:cf>
+
+[   11.138765] [atbm_log]:atbm_setup_mac:addr(4c37deab35cf)
+[   11.144961] [atbm_log]:3 !!! atbm_vif_setup_params: enabling priv
+[   11.172058] [atbm_log]:[STA] Interface ID:0 of type:2 added
+[   11.178099] [atbm_log]:atbm_set_uapsd_param:uapsdFlags(0)
+[   11.185486] [atbm_log]:atbm_set_uapsd_param:uapsdFlags(0)
+[   11.192298] [atbm_log]:atbm_set_uapsd_param:uapsdFlags(0)
+[   11.198904] [atbm_log]:atbm_set_uapsd_param:uapsdFlags(0)
+[   11.210840] [atbm_log]:atbm_set_uapsd_param:uapsdFlags(0)
+[32m[00:00:05.974|    info|        ] [0mWi-Fi reset time 3500ms
+
+[32m[00:00:06.009|    info|        ] [0mwifi ble-combo start working
+
+[32m[00:00:06.010|    info|        ] [0mwifi ble-combo stop working
+
+[32m[00:00:06.010|    info|        ] [0mStatus <Hardware wake-up>.
+
+[   11.372026] [atbm_log]:wlan0:free authen bss ++
+[37m[00:00:06.070|   debug|        ] [0mstatus changed 0->8
+
+[   11.426330] watchdog watchdog0: watchdog did not stop!
+[   11.432251] [atbm_log]:atbm_remove_interface:priv->if_id(0)
+[37m[00:00:06.149|   debug|        ] [0mdokodemo(ifconfig wlan0 down)=9
+
+[   11.642361] [atbm_log]:ble_platform_remove(817d9700)
+[37m[00:00:06.566|   debug|        ] [0mdokodemo(rmmod /usr/modules//atbm603x_HT20.ko)=9
+
