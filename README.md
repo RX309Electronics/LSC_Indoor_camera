@@ -117,18 +117,18 @@ After a few seconds its done and it should have dumped the partitions it can acc
 binwalk -e {filename}
 ```
 
-And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories like:
-| /bin  |
-| /sbin |
-| /etc  |
-| /dev  |
-| /proc |
-| /sys  |
-| /lib  |
-| /mnt  |
-| /tmp  |
-| /usr  |
-| /var  |
-and the Linuxrc binary which is a symlink to Busybox. Which also runs the entries in inittab and eventually the main rcS init script in /etc/init.d which mounts the filesystems and partitions and starts the app init script. 
-
+And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
+--------------------------
+| /bin   | Holds system wide binaries that can be used by all users. (Most binaries are a symlink to busybox)
+| /dev   | Holds the device nodes (files that represent hardware and devices because in Unix everything is a file)
+| /etc   | Holds the system wide configuration files. 
+| /lib   | Holds shared libraries and kernel modules
+| /mnt   | For mounting external devices
+| /proc  | Holds the process nodes for information about processes and kernel
+| /sbin  | Essential system binaries for system administration usage
+| /sys   | Exposes kernel objects and hardware devices
+| /tmp   | temporary files like PID and status files
+| /usr   | non critical programs and are for custom binaries or applications like in our case to hold the Tuya stuff. 
+| /var   | Variable files
+| linuxrc|
 
