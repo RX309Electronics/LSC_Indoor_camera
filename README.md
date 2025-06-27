@@ -96,7 +96,25 @@ First thing i always do i simply look at the partition table. The Linux kernel a
 | mtd6:     | 00040000 |   00008000 | CFG  |
 | mtd7:     | 004d8000 |   00008000 | USR  |
 | mtd8:     | 00800000 |   00008000 | SFC  |
-
 [Raw output + descriptions](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/partition_table)
+
+# Dumping the filesystem
+Next i will try dumping the flash/filesystem. Instead of desoldering the flash we can do it straight from the busybox userland. You only need a sdcard (formatted as fat) and [This file](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/dumpfw.sh). Simply copy the file to the sdcard, make sure its executable (If its not, set the executable flag. FIrst go to the directory the file is in and then execute this command in your host's shell:
+```
+chmod +x dumpfw.sh
+```
+Than eject the sdcard and plug it into the camera. Next you have to mount it from within the userland. Execute this in the busybox shell:
+```
+mkdir /tmp/sdcard
+mount /dev/mmcblk0p1 /tmp/sdcard
+```
+Then simply go into this directory and execute the script with:
+```
+./dumpfw.sh
+```
+After a few seconds its done and it should have dumped the partitions it can access (except the N/A partitions). You should see the partition name with a .bin extension and those are the raw partitions. Now you can use binwalk to extract them.
+```
+binwalk -e {filename}
+```
 
 
