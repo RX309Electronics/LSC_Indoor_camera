@@ -34,7 +34,7 @@ So next i hooked up a UART to the pins on the board. I did not make a photo of b
 ![1000179982](https://github.com/user-attachments/assets/c848228a-e0ce-4e1e-9b4d-f88980ef4c74)
 
 After i did that and started a terminal session on my pc, I could view the logs. I am on Debian Linux so i use picocom but you can use putty or minicom if you desire: 
-https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt
+(https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt)
 Seems the engineers/devs had time and fun to embed a nice little 'splash' into the boot output. From these logs we can see that it uses Das U-boot (or simply U-boot) as a bootloader. U-boot is common on embedded devices and runs in millions of devices and hardware combinations and its opensource meaning you can tweak it how much you want and that makes it nice and easy to strip down on storage limited devices like embedded devices. It also runs Linux 3.10.14 which is common for Ingenic chips. And the __isvp_pike_ is the codename of the chip. 'Pike' is common for Ingenic T23 chips. Below is a table of codenames for the chips. And the isvp part means 'Ingenic Smart video platform'. 
 
 | Chip  |Codename |
@@ -53,7 +53,7 @@ When it boots up normally it starts up everything but then it presents a passwor
 
 Here is the command to update the up_bootargs to bypass the normal init: setenv up_bootargs 'setenv bootargs console=ttyS1,115200n8 mem=${holily_mem}M@0x0 rmem=18M@0x2e00000 init=/bin/sh rootfstype=squashfs root=/dev/mtdblock5 rw mtdparts=${mtdparts}'. Its also in a file if you like to copy and paste: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootargs_shell)
 
-By changing the 'Init' or 'rdinit' parameter from standard '/linuxrc' to '/bin/sh' we basically say to the kernel to run /bin/sh (standard busybox shell) as PID 1 process. In Unix and *Nix PID 1 is the process that inmideatly runs after the kernel has initialised and runs till the device is shut off and has to keep running the whole time (otherwise you get a kernel panic). /linuxrc basically runs the standard init scripts and starts the application while /bin/sh presents a non-passsword-protected shell to us. After changing the parameter and typing 'saveenv' to write the changes to the flash chip, we can simply run 'boot' to start the kernel. After it has booted it should present a shell to us. If we are in the shell, there are a few things we have to do first. Because we bypassed the normal Init process we have to manually execute some commands to mount the standard required Linux directories and to prepare the system just like the normal Init process had done. First we mount the required filesystems, run the commands below in the shell:
+By changing the 'Init' or 'rdinit' parameter from standard '/linuxrc' to '/bin/sh' we basically say to the kernel to run /bin/sh (standard busybox shell) as PID 1 process. In Unix and *Nix PID 1 is the process that inmideatly runs after the kernel has initialised and runs till the device is shut off and has to keep running the whole time (otherwise you get a kernel panic). /linuxrc basically runs the standard init scripts and starts the application while /bin/sh presents a non-passsword-protected shell to us. After changing the parameter and typing 'saveenv' to write the changes to the flash chip, we can simply run 'boot' to start the kernel. After it has booted it should present a shell to us. If we are in the shell, there are a few things we have to do first. Because we bypassed the normal Init process we have to manually execute some commands to mount the standard required Linux directories and to prepare the system just like the normal Init process had done. First we mount the required filesystems, run the commands below in the shell i extracted from the rcS script in the filesystem:
 
 mount -t tmpfs tmpfs /dev
 mkdir -p /dev/pts
@@ -69,22 +69,23 @@ mkdir -p /mnt/config
 /bin/mount -t squashfs /dev/mtdblock7 /usr
 /bin/mount --bind /usr/modules /lib/modules
 
-After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init)
+After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition you can simply copy and paste this into the shell: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init).
 
+# Analysing the system
+After you are into this shell you can do a lot of things because its just a basic Linux system with a few utilities and commands. 
+First thing i always do i simply look at the partition table. The Linux kernel also gives this on boot but it might scroll by realy fast so in this way you can eaisly study it without bunch of text filling the terminal. Simply run 'cat /proc/mtd' and it shows the partition table and even the adresses and size of the partitions:
 
-
-# Partitions and the fileystem
-
-Below is a partition table the kernel presents on boot and it can also be requested by entering a root shell and typing 'cat /proc/mtd' after /proc and /dev and /sys are mounted.
-Mtd0 UBT: This is probably the U-boot bootloader which is what the Ingenic on-chip bootrom jumpts to and executes to start the device and this also loads the kernel and rootfs.
-Mtd1 ENV: This is likely the U-boot environment which holds all the parameters and variables.
-Mtd2 and Mtd3 seem to be Unused and are marked N/A
-Mtd4 K: This is the Linux kernel of the device.
-Mtd5 RT: This is the Squashfs Rootfilesystem. Its a really small lightweight busybox userland with 'just enough' to run the custom binaries and scripts buy tuya.
-Mtd6 CFG: This is the Config partition which holds tuya specific configuration files. 
-Mtd7 USR: This seems to hold the custom Tuya binaries and scripts.
-Mtd8 SFC: This is probably the full flash. 
-
+-----------------------------
+mtd0: 00040000 00008000 "UBT"
+mtd1: 00008000 00008000 "ENV"
+mtd2: 00008000 00008000 "N/A"
+mtd3: 00008000 00008000 "N/A"
+mtd4: 001a0000 00008000 "K"
+mtd5: 00100000 00008000 "RT"
+mtd6: 00040000 00008000 "CFG"
+mtd7: 004d8000 00008000 "USR"
+mtd8: 00800000 00008000 "SFC"
+-----------------------------
 
 
 
