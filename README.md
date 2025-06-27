@@ -118,17 +118,40 @@ binwalk -e {filename}
 ```
 
 And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
---------------------------
-| /bin   | Holds system wide binaries that can be used by all users. (Most binaries are a symlink to busybox)
-| /dev   | Holds the device nodes (files that represent hardware and devices because in Unix everything is a file)
-| /etc   | Holds the system wide configuration files. 
-| /lib   | Holds shared libraries and kernel modules
-| /mnt   | For mounting external devices
-| /proc  | Holds the process nodes for information about processes and kernel
-| /sbin  | Essential system binaries for system administration usage
-| /sys   | Exposes kernel objects and hardware devices
-| /tmp   | temporary files like PID and status files
-| /usr   | non critical programs and are for custom binaries or applications like in our case to hold the Tuya stuff. 
-| /var   | Variable files
-| linuxrc|
+-----------
+/
+| bin   | 
+| dev   | 
+| etc   | 
+| lib   | 
+| mnt   | 
+| proc  | 
+| sbin  | 
+| sys   | 
+| tmp   | 
+| usr   |
+| var   | 
+| linuxrc |
+-----------
+
+And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
+-------------
+/usr/local/
+| bin |
+| etc_addon |
+| isp |
+| lib |
+| resource |
+| sbin |
+------------
+In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
+---------------------------------------------------------------------------------------------------------------------------------------
+/usr/local/bin
+| assistant_voice | Symlink to doraemon which handles audio. When run asks for a audio file in .mp3 format, volume and gain parameters.
+| audio_frequency_spectrum | Just shows a fun doodle and [This message](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/secret_message). Seems they are surprised you found it and then push a job application because they need talented people like you and me. I just wanted to share this because i love it when software devs put tons of easter eggs into a products software you only uncover once you take a look under the hood (or using a UART tap into the shell). 
+
+
+# Some fun stuff
+The main 'doraemon' super-binary is made by WhaleVT (Shenzen Whale video technology corporation) and it is 7.4 megabytes so quite huge! In the 
+
 
