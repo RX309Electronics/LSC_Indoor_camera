@@ -16,4 +16,4 @@ mtd4: Linux kernel
 mtd5: Rootfs
 mtd6: Configuration files
 mtd7: USR directory containing tuya application binaries and scripts
-mtd8:
+mtd8: Full flash minus the bootloader probably
