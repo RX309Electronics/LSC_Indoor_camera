@@ -144,7 +144,6 @@ And USR.bin contains the Tuya specific software stack and binaries and scripts. 
 | lib         |
 | resource    |
 | sbin        |  
---------------- 
 
 In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
 
