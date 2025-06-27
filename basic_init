@@ -1,0 +1,15 @@
+mount -t tmpfs tmpfs /dev
+mkdir -p /dev/pts
+mkdir -p /dev/shm
+mount -a
+/bin/mount -av
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+/sbin/mdev -s && echo "mdev is ok......"
+mkdir /var/cache
+mkdir /var/run
+mkdir /var/log
+mkdir /var/spool
+mkdir -p /mnt/config
+/bin/mount -t jffs2 /dev/mtdblock6 /mnt/config
+/bin/mount -t squashfs /dev/mtdblock7 /usr
+/bin/mount --bind /usr/modules /lib/modules
