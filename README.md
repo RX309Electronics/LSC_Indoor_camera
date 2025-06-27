@@ -33,9 +33,22 @@ We also see a Altobeam atbm6012b which is the wireless chipset which comminucate
 So next i hooked up a UART to the pins on the board. I did not make a photo of before i put a blob of glue on it but under it are some pads that are clearly marked RX, TX and Gnd. Soi hooked up the TX of my Usb to uart to the RX on the device and RX of the usb to uart to TX on the device and Gnd to Gnd. Thats all you need, please do NOT connect power! Then i covered it with glue to avoid easily riping off the pcb pads which happened on some earlier devices:
 ![1000179982](https://github.com/user-attachments/assets/c848228a-e0ce-4e1e-9b4d-f88980ef4c74)
 
-After i did that and started a terminal session on my pc, I could view the logs. I am on Debian Linux so i use picocom but you can use putty or minicom if you desire. 
+After i did that and started a terminal session on my pc, I could view the logs. I am on Debian Linux so i use picocom but you can use putty or minicom if you desire: 
 https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt
+Seems the engineers/devs had time and fun to embed a nice little 'splash' into the boot output. From these logs we can see that it runs Linux 3.10.14 which is common for Ingenic chips. And the __isvp_pike_ is the codename of the chip. 'Pike' is common for Ingenic T23 chips. Below is a table of codenames for the chips. And the isvp part means 'Ingenic Smart video platform'. 
 
+| Chip  |Codename |
+| ----- | --------|
+| T10   | Mango  |  
+| T20   | Bull   |
+| T21   | Turkey |
+| T23   | Pike   |
+| T30   | Monkey |
+| T31   | Swan   |
+| T40   | Shark  |
+| T41   | Marmot |
+
+The rootfs itself is a squashfs filesystem meaning its read only. From the partition_table we can see that it has 8 partitions on the flash. I included the partition table as a file with the partitions being filled in with what i think are what they hold. 
 
 
 
