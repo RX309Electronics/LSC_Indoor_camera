@@ -118,6 +118,7 @@ binwalk -e {filename}
 ```
 
 And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
+|       |
 -----------
 | bin   | 
 | dev   | 
