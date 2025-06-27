@@ -118,13 +118,10 @@ After a few seconds its done and it should have dumped the partitions it can acc
 binwalk -e {filename}
 ```
 
-And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix director
-ies and layout:
----------------------------------------------------------------------------------------------------------------------------
-/bin, /dev, /etc, /lib, /mnt, /proc, /sbin, /sys, /tmp, /usr, /var. And a file called Linuxrc which is a symlink to busybox. 
+# The filesystems
 
-And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr so it also contains some normal /usr stuff. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
-
+And yes i was right! RT contains the squashfs root-filesystem and this is a standardb linux one with standard directories.
+> /bin, /dev, /etc, /lib, /mnt, /proc, /sbin, /sys, /tmp, /usr, /var. And a file called Linuxrc which is a symlink to busybox. 
 
 
 
