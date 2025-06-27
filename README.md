@@ -12,11 +12,12 @@ I bought this camera at Action yesterday (Action is a german dutch store that se
 
 ![1000179978](https://github.com/user-attachments/assets/bbf84f3f-00db-4c68-a106-54fb96eff541)
 
-![1000179980](https://github.com/user-attachments/assets/a68bf4c5-1f08-46c2-8c72-576620a57792)
+
 
 # Teardown and analysis
 As you can see, you have to pry it open at the front. Stick a spudger or screwdriver between the edge and the black front plastic and then it should pop off. 
 Once inside you can see the main components: 
+![1000179980](https://github.com/user-attachments/assets/a68bf4c5-1f08-46c2-8c72-576620a57792)
 ![1000179981](https://github.com/user-attachments/assets/915324e0-cba0-4730-9553-00cbbb5134b7)
 The main soc (the heart) of the camera is a Ingenic T23N. This chip is quite beefy. It has 1 main Xburst cpu core running at max 1.4ghz. And it also has a coprocessor which is a RiscV mcu core runing at 600mhz. And it has all the hardware and blocks that allow it to function in an IP camera platform like Some Tuya or other vendor. The Xurst runs the Linux os and the riscV some firmware or RTOS:
 ![image](https://github.com/user-attachments/assets/84f89b41-a1fb-4083-8087-2f9241c109d2)
