@@ -34,7 +34,7 @@ So next i hooked up a UART to the pins on the board. I did not make a photo of b
 ![1000179982](https://github.com/user-attachments/assets/c848228a-e0ce-4e1e-9b4d-f88980ef4c74)
 
 After i did that and started a terminal session on my pc, I could view the logs. I am on Debian Linux so i use picocom but you can use putty or minicom if you desire. 
-
+https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt
 
 
 
