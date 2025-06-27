@@ -113,37 +113,20 @@ Then simply go into this directory and execute the script with:
 ./dumpfw.sh
 ```
 After a few seconds its done and it should have dumped the partitions it can access (except the N/A partitions). You should see the partition name with a .bin extension and those are the raw partitions. Now you can use binwalk to extract them.
+
 ```
 binwalk -e {filename}
 ```
 
-And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
+And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix director
+ies and layout:
+---------------------------------------------------------------------------------------------------------------------------
+/bin, /dev, /etc, /lib, /mnt, /proc, /sbin, /sys, /tmp, /usr, /var. And a file called Linuxrc which is a symlink to busybox. 
 
-| /       |
------------
-| bin     | 
-| dev     | 
-| etc     | 
-| lib     | 
-| mnt     |  
-| proc    | 
-| sbin    | 
-| sys     | 
-| tmp     | 
-| usr     |
-| var     | 
-| linuxrc |
+And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr so it also contains some normal /usr stuff. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
 
-And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
 
-| /usr/local/ |
----------------
-| bin         |
-| etc_addon   |
-| isp         |
-| lib         |
-| resource    |
-| sbin        |  
+
 
 In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
 
