@@ -2,7 +2,7 @@ mount -t tmpfs tmpfs /dev
 mkdir -p /dev/pts
 mkdir -p /dev/shm
 mount -a
-/bin/mount -av
+mount -av
 echo /sbin/mdev > /proc/sys/kernel/hotplug
 /sbin/mdev -s && echo "mdev is ok......"
 mkdir /var/cache
@@ -10,6 +10,22 @@ mkdir /var/run
 mkdir /var/log
 mkdir /var/spool
 mkdir -p /mnt/config
-/bin/mount -t jffs2 /dev/mtdblock6 /mnt/config
-/bin/mount -t squashfs /dev/mtdblock7 /usr
-/bin/mount --bind /usr/modules /lib/modules
+mount -t jffs2 /dev/mtdblock6 /mnt/config
+mount -t squashfs /dev/mtdblock7 /usr
+mount --bind /usr/modules /lib/modules
+tmp_etc_dir=/tmp/etc
+cp -Rf /etc/  $tmp_etc_dir
+/bin/mount --bind $tmp_etc_dir/ /etc/
+/bin/mount --bind /mnt/config /data/
+ifconfig lo 127.0.0.1
+export PATH=/tmp/bin:/tmp/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+export LD_LIBRARY_PATH=/tmp/lib:/lib:/usr/lib:/usr/local/lib
+/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+echo 4 > /proc/sys/kernel/printk
+syslogd -D -n -O /var/log/messages -s 200 -b 3 & 
+klogd -n &
+echo 256 > /proc/sys/vm/min_free_kbytes
+echo 300 > /proc/sys/vm/dirty_expire_centisecs 
+echo 200 > /proc/sys/vm/vfs_cache_pressure 
+/usr/local/sbin/load_modules.sh
