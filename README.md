@@ -69,17 +69,30 @@ mkdir -p /dev/shm
 mount -a
 mount -av
 ```
-
+## Mounting and preparing the environment for the Tuya stuff
 Now it should have mounted the basic Linux directories like proc, dev and sys, now most commands should also work. But we also need to mount the other partitions so we can get acess to the juicy Tuya custom stuff. 
 Simply run these commands below: 
 ```
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+/sbin/mdev -s && echo "mdev is ok......"
+mkdir /var/cache
+mkdir /var/run
+mkdir /var/log
+mkdir /var/spool
 mkdir -p /mnt/config
 mount -t jffs2 /dev/mtdblock6 /mnt/config
 mount -t squashfs /dev/mtdblock7 /usr
 mount --bind /usr/modules /lib/modules
+tmp_etc_dir=/tmp/etc
+cp -Rf /etc/  $tmp_etc_dir
+/bin/mount --bind $tmp_etc_dir/ /etc/
+/bin/mount --bind /mnt/config /data/
+ifconfig lo 127.0.0.1
+export PATH=/tmp/bin:/tmp/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+export LD_LIBRARY_PATH=/tmp/lib:/lib:/usr/lib:/usr/local/lib
 ```
 
-After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition you can simply copy and paste [This](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init). into the shell.
+After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount the basic /dev, /sys and /proc directories and mount the config and Tuya USR partition and prepare the system you can simply copy and paste [This](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init). into the shell. This script contains eveyrhting from the inittab, rcS and start_app script thats needed to set up the environment and load drivers.
 
 # Analysing the system
 After you are into the shell you can do a lot of things because its just a basic Linux system with a few utilities and commands. 
@@ -103,32 +116,99 @@ Next i will try dumping the flash/filesystem. Instead of desoldering the flash w
 ```
 chmod +x dumpfw.sh
 ```
+
 Than eject the sdcard and plug it into the camera. Next you have to mount it from within the userland. Execute this in the busybox shell:
 ```
 mkdir /tmp/sdcard
 mount /dev/mmcblk0p1 /tmp/sdcard
 ```
+
 Then simply go into this directory and execute the script with:
 ```
 ./dumpfw.sh
 ```
-After a few seconds its done and it should have dumped the partitions it can access (except the N/A partitions). You should see the partition name with a .bin extension and those are the raw partitions. Now you can use binwalk to extract them.
 
+After a few seconds its done and it should have dumped the partitions it can access (except the N/A partitions). You should see the partition name with a .bin extension and those are the raw partitions. Now you can use binwalk to extract them:
 ```
 binwalk -e {filename}
 ```
 
 # The filesystems
+First of all we got the rootfilesystem which is a squashfs and its indeed the RT partition. In it we find commoon Linux/*nix folders. I dont think i have to really explain them because if you know the basis of linux then you should be familiar with these and otherwise, online is enough information about linux and directries:
+> /bin /dev /etc /lib /mnt /proc /sbin /sys /tmp /usr /var. And a linuxrc file which is a symlink to busybox. 
 
-And yes i was right! RT contains the squashfs root-filesystem and this is a standardb linux one with standard directories.
-> /bin, /dev, /etc, /lib, /mnt, /proc, /sbin, /sys, /tmp, /usr, /var. And a file called Linuxrc which is a symlink to busybox. 
+Then we have the USR partition which not only contains standard /usr files and data but also has the fun stuff inside it:
+|  /usr    | What it Contains                                         |
+-----------|--------------------------------------------------------- |
+|  /bin    | Nothing                                                  |
+|  /lib    | Libraries like libgcc and libstdc++                      |
+|  /local  | The fun stuff                                            |
+|  /modules| Kernel modules                                           |
+|  /share  | Files with chip name. date, solution vendor and vbersion |
 
 
+/usr/local/ is what is interesting to us 
+| /usr/local/ | What it contains                                                               |
+|-------------|--------------------------------------------------------------------------------|
+| /bin        | Contains all the custom programs                                               |
+| /etc_addon  | Contains webrtc_profile.txt which seems to be for Web Real Time Comminucation. |
+| /isp        | Binary blobs for the different sensor modules/chips                            |
+| /lib        | Contains 1 library called libaudioprocess.so which i think is for Audio        |
+| /resource   | Contains all the mp3 audio/sound files and a single font.                      |
+| /sbin       | Contains all scripts for starting, stopping the app, system upgrade and load modules |
 
-In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
+
+In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. So they are not real applications but they call the doraemon binary in a specific way that executes that specific function. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
+All the custom applications (which are symlinked to the big doraemon binary) are listed below:
+> assistant_voice, audio_frequency_spectrum, aux_ir, baby_cry_detection, ipc_boot_env, ipc_factory_activate, ipc_info, ipc_mini_service, ipc_onvif_nvt, ipc_performance_test, ipc_pin_assignment, ipc_service, ipc_upgrade, ipc_upgrade_amend_boot, ipc_upgrade_discovery, ipc_watchdog, oops, selfcheck_audio, standardize_motor_direction, temperature, test_ipc_audio_output, test_ipc_babycry_detect, test_ipc_qrcode_scanning, test_ipc_rtsp_server, wifi_access_point_survey, wifi_station.
+
+
+And CFG contains the Tuya configuration files which i found less interesting so hence i did not write about it.
 
 
 # Some fun stuff
-The main 'doraemon' super-binary is made by WhaleVT (Shenzen Whale video technology corporation) and it is 7.4 megabytes so quite huge! In the 
+Before you can do all the fun stuff you need to manually execute some commands to get all things set up properly:
+```
+/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+echo 4 > /proc/sys/kernel/printk
+syslogd -D -n -O /var/log/messages -s 200 -b 3 & 
+klogd -n &
+echo 256 > /proc/sys/vm/min_free_kbytes
+echo 300 > /proc/sys/vm/dirty_expire_centisecs 
+echo 200 > /proc/sys/vm/vfs_cache_pressure 
+/usr/local/sbin/load_modules.sh
+```
+Or reference to [Earlier section](#Mounting-and-preparing-the-environment-for-the-Tuya-stuff)
+
+
+The main with all the programs being a symlink to the main doraemon binary made me curious so i ran some programs. I also found [THIS](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/secret_message) easteregg by the developers that pops up when i run some programs. assitant_voice is the program for playing audio and it gives this when i ran it with no arguments it asked for a media_file parameter and a volume and gain parameter. I quickly found out i could play audio using this program. I first tested it with the audio files in the /usr/local/resource/assistant_voice directory and it worked! Below is a quick snippet you can try:
+```
+assistant_voice /usr/local/resource/assistant_voice/effect_sound1.mp3 10 10
+```
+
+Next i thought "It can play mp3 files...... Maybe i can play music from the sdcard through the speaker usig this audio daemon process...."
+So i thought 'Lets try never gonna give you up first' so i downloaded the mp3 file and then converted it using the below command on my host system to the correct format and bitrate:
+```
+ffmpeg -i nggyu.mp3 -ar 16000 -ac 1 -b:a 40k -c:a libmp3lame nggyu_converted.mp3
+```
+
+Then copy it to the sdcard:
+```
+cp nggyu_converted.mp3 {sdcard directory. Change this to where the sdcard is mounted}/nggyu.mp3
+```
+
+Then i ejected the sdcard from my host pc and plugged it into the camera. Then i mounted it via the userland to a read-write directory, /tmp/sdcard using below commands:
+```
+mkdir /tmp/sdcard
+mount /dev/mmcblk0p1 /tmp/sdcard
+```
+
+Then its as simple as executing below command. I am still figuring out how to set the volume though but below snippet plays it at a reasoanble volume:
+```
+assistant_voice /tmp/sdcard/nggyu.mp3 volume=0 
+```
+ 
+
 
 
