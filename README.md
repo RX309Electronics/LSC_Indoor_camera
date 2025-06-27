@@ -117,4 +117,18 @@ After a few seconds its done and it should have dumped the partitions it can acc
 binwalk -e {filename}
 ```
 
+And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories like:
+| /bin  |
+| /sbin |
+| /etc  |
+| /dev  |
+| /proc |
+| /sys  |
+| /lib  |
+| /mnt  |
+| /tmp  |
+| /usr  |
+| /var  |
+and the Linuxrc binary which is a symlink to Busybox. Which also runs the entries in inittab and eventually the main rcS init script in /etc/init.d which mounts the filesystems and partitions and starts the app init script. 
+
 
