@@ -14,8 +14,21 @@ I bought this camera at Action yesterday (Action is a german dutch store that se
 
 ![1000179980](https://github.com/user-attachments/assets/a68bf4c5-1f08-46c2-8c72-576620a57792)
 
+# Teardown and analysis
 As you can see, you have to pry it open at the front. Stick a spudger or screwdriver between the edge and the black front plastic and then it should pop off. 
 Once inside you can see the main components: 
 ![1000179981](https://github.com/user-attachments/assets/915324e0-cba0-4730-9553-00cbbb5134b7)
-The main soc of the camera is a Ingenic T23N. This chip is quite beefy:
+The main soc (the heart) of the camera is a Ingenic T23N. This chip is quite beefy. It has 1 main Xburst cpu core running at max 1.4ghz. And it also has a coprocessor which is a RiscV mcu core runing at 600mhz. And it has all the hardware and blocks that allow it to function in an IP camera platform like Some Tuya or other vendor. The Xurst runs the Linux os and the riscV some firmware or RTOS:
 ![image](https://github.com/user-attachments/assets/84f89b41-a1fb-4083-8087-2f9241c109d2)
+
+Underneath the soc there is a flash chip by XMC which is a 25qh64 which is just one variant of the clasic 25 series SPI flash chips. In this case our chip is 8 megaBYTE because its 64 megaBIT / 8 = 8 Megabyte. This chip stores the firmware and has a few partitions we will take a look at further in a few moments:
+![1000179990](https://github.com/user-attachments/assets/e27e9cd8-fb02-4e1c-9f5c-86e46139ebb5)
+
+We also see a Altobeam atbm6012b which is the wireless chipset which comminucates with the main SOC over usb or SDIO but in our case its usb:
+![1000179991](https://github.com/user-attachments/assets/04adf08b-9977-4947-ac6e-d859a54ab180)
+
+
+
+
+
+
