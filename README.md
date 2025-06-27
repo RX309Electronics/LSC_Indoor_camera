@@ -76,41 +76,13 @@ After you are into this shell you can do a lot of things because its just a basi
 First thing i always do i simply look at the partition table. The Linux kernel also gives this on boot but it might scroll by realy fast so in this way you can eaisly study it without bunch of text filling the terminal. Simply run 'cat /proc/mtd' and it shows the partition table and even the adresses and size of the partitions:
 
 dev:    size   erasesize  name
-mtd0: 00040000 00008000 "UBT" This is probably the U-boot bootloader. Often The first partition is the bootloader or early program loader
-mtd1: 00008000 00008000 "ENV" This is likely the U-boot environment partition which holds the parameters.
-mtd2: 00008000 00008000 "N/A" This seems to be unused
-mtd3: 00008000 00008000 "N/A" This also seems to be unused
-mtd4: 001a0000 00008000 "K"   This is the Linux kernel
-mtd5: 00100000 00008000 "RT"  This is the squashfs Rootfilesystem and is read only
-mtd6: 00040000 00008000 "CFG" This is the configuration partition which holds the Tuya config files
-mtd7: 004d8000 00008000 "USR" This is the partition holding the custom Tuya stuff like the binaries, application init scripts and some modules and firmware.
-mtd8: 00800000 00008000 "SFC" I am not yet sure what this 
-
-And 'cat /proc/cpuinfo': 
-system type             : Pike
-machine                 : Unknown
-processor               : 0
-cpu model               : Ingenic Xburst V0.0  FPU V0.0
-BogoMIPS                : 1185.38
-wait instruction        : yes
-microsecond timers      : no
-tlb_entries             : 32
-extra interrupt vector  : yes
-hardware watchpoint     : yes, count: 1, address/irw mask: [0x0fff]
-isa                     : mips32r1
-ASEs implemented        :
-shadow register sets    : 1
-kscratch registers      : 7
-core                    : 0
-VCED exceptions         : not available
-VCEI exceptions         : not available
-
-Hardware                : isvp
-Serial                  : 00000000 00000000 00000000 00000000
-
- 
-
-
-
-
+|mtd0: 00040000 00008000 "UBT" This is probably the U-boot bootloader. Often The first partition is the bootloader or early program loader
+|mtd1: 00008000 00008000 "ENV" This is likely the U-boot environment partition which holds the parameters.
+|mtd2: 00008000 00008000 "N/A" This seems to be unused
+|mtd3: 00008000 00008000 "N/A" This also seems to be unused
+|mtd4: 001a0000 00008000 "K"   This is the Linux kernel
+|mtd5: 00100000 00008000 "RT"  This is the squashfs Rootfilesystem and is read only
+|mtd6: 00040000 00008000 "CFG" This is the configuration partition which holds the Tuya config files
+|mtd7: 004d8000 00008000 "USR" This is the partition holding the custom Tuya stuff like the binaries, application init scripts and some modules and firmware.
+|mtd8: 00800000 00008000 "SFC" I am not yet sure what this 
 
