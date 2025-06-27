@@ -79,10 +79,10 @@ mount -t squashfs /dev/mtdblock7 /usr
 mount --bind /usr/modules /lib/modules
 ```
 
-After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition you can simply copy and paste this into the shell: (https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init).
+After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount he basic /dev, /tsys and /proc directories and mount the config and Tuya USR partition you can simply copy and paste [This](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init). into the shell.
 
 # Analysing the system
-After you are into this shell you can do a lot of things because its just a basic Linux system with a few utilities and commands. 
+After you are into the shell you can do a lot of things because its just a basic Linux system with a few utilities and commands. 
 First thing i always do i simply look at the partition table. The Linux kernel also gives this on boot but it might scroll by realy fast so in this way you can eaisly study it without bunch of text filling the terminal. Simply run 'cat /proc/mtd' and it shows the partition table and even the adresses and size of the partitions. Below i have put all info into a nice table:
 
 | Partition | Size     | Erase size | Name |
@@ -96,5 +96,7 @@ First thing i always do i simply look at the partition table. The Linux kernel a
 | mtd6:     | 00040000 |   00008000 | CFG  |
 | mtd7:     | 004d8000 |   00008000 | USR  |
 | mtd8:     | 00800000 |   00008000 | SFC  |
+
+[Raw output + descriptions](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/partition_table)
 
 
