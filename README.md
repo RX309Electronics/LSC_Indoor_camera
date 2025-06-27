@@ -118,21 +118,20 @@ binwalk -e {filename}
 ```
 
 And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
-|       |
 -----------
-| bin   | 
-| dev   | 
-| etc   | 
-| lib   | 
-| mnt   | 
-| proc  | 
-| sbin  | 
-| sys   | 
-| tmp   | 
-| usr   |
-| var   | 
+/
+| bin     | 
+| dev     | 
+| etc     | 
+| lib     | 
+| mnt     |  
+| proc    | 
+| sbin    | 
+| sys     | 
+| tmp     | 
+| usr     |
+| var     | 
 | linuxrc |
------------
 
 And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
 -------------
@@ -143,7 +142,7 @@ And USR.bin contains the Tuya specific software stack and binaries and scripts. 
 | lib |
 | resource |
 | sbin |
-------------
+
 In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
 ---------------------------------------------------------------------------------------------------------------------------------------
 /usr/local/bin
