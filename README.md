@@ -167,22 +167,10 @@ And CFG contains the Tuya configuration files which i found less interesting so 
 
 
 # Some fun stuff
-Before you can do all the fun stuff you need to manually execute some commands to get all things set up properly:
-```
-/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
-mdev -s
-echo 4 > /proc/sys/kernel/printk
-syslogd -D -n -O /var/log/messages -s 200 -b 3 & 
-klogd -n &
-echo 256 > /proc/sys/vm/min_free_kbytes
-echo 300 > /proc/sys/vm/dirty_expire_centisecs 
-echo 200 > /proc/sys/vm/vfs_cache_pressure 
-/usr/local/sbin/load_modules.sh
-```
-Or reference to [Earlier section](#Mounting-and-preparing-the-environment-for-the-Tuya-stuff)
+Now you are into this section i presume you have already ran all commands from before because those are really important for the correct functionality and for sure the commands related to setting up and loading the tuya specific binary environment correctly and loading drivers because otherwise you get a kernel panic or crashes (I had it crash when i forgot to do so). If not, please follow the instructions in: [Earlier section](#Mounting-and-preparing-the-environment-for-the-Tuya-stuff)
 
 
-The main with all the programs being a symlink to the main doraemon binary made me curious so i ran some programs. I also found [THIS](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/secret_message) easteregg by the developers that pops up when i run some programs. assitant_voice is the program for playing audio and it gives this when i ran it with no arguments it asked for a media_file parameter and a volume and gain parameter. I quickly found out i could play audio using this program. I first tested it with the audio files in the /usr/local/resource/assistant_voice directory and it worked! Below is a quick snippet you can try:
+With all the programs being a symlink to the main doraemon binary, it made me curious so i ran some programs. I also found [THIS](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/secret_message) easteregg by the developers that pops up when i run some programs. Quite a fun easteregg and i never really seen many devices have many eastereggs or any at all by the software devs. assitant_voice is the program for playing audio and it gives this when i ran it with no arguments it asked for a media_file parameter and a volume and gain parameter. I quickly found out i could play audio using this program. I first tested it with the audio files in the /usr/local/resource/assistant_voice directory and it worked! Below is a quick snippet you can try:
 ```
 assistant_voice /usr/local/resource/assistant_voice/effect_sound1.mp3 10 10
 ```
