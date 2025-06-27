@@ -119,8 +119,8 @@ binwalk -e {filename}
 
 And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesystem with common *nix/Unix directories and layout:
 
------------
 | /       |
+-----------
 | bin     | 
 | dev     | 
 | etc     | 
@@ -136,20 +136,17 @@ And yep in RT.bin we have the main rootfs! Its a standard Linux squashfs filesys
 
 And USR.bin contains the Tuya specific software stack and binaries and scripts. This partition gets mounted at /usr. When its mounted most files are in /usr/local/. /usr/local/ has some folders and files inside 
 
--------------
-| bin       |
-| etc_addon |
-| isp       |
-| lib       |
-| resource  |
-| sbin      |
-
+| /usr/local/ |
+---------------
+| bin         |
+| etc_addon   |
+| isp         |
+| lib         |
+| resource    |
+| sbin        |  
+--------------- 
 
 In the bin folder are 2 main binaries. A dokodemo binary and a doraemon binary, both custom made by WhaleVT (Shenzen Whale Video Technology corporation). Next to those 2 binaries are also a bunch of applications which are just specific symlinks to the doraemon binary all with different arguments and parameters. Seems this big boy binary (7.4 megabyte) is what does the heavy lifting. It comminucates with the Tuya servers, processes video, handles the wifi via the wireless chip, controls the whole system and Its the soul of the camera, it makes this product an IP camera. 
----------------------------------------------------------------------------------------------------------------------------------------
-/usr/local/bin
-| assistant_voice | Symlink to doraemon which handles audio. When run asks for a audio file in .mp3 format, volume and gain parameters.
-| audio_frequency_spectrum | Just shows a fun doodle and [This message](https://raw.githubusercontent.com/RX309Electronics/LSC_Indoor_camera/main/secret_message). Seems they are surprised you found it and then push a job application because they need talented people like you and me. I just wanted to share this because i love it when software devs put tons of easter eggs into a products software you only uncover once you take a look under the hood (or using a UART tap into the shell). 
 
 
 # Some fun stuff
