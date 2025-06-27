@@ -34,7 +34,7 @@ So next i hooked up a UART to the pins on the board. I did not make a photo of b
 ![1000179982](https://github.com/user-attachments/assets/c848228a-e0ce-4e1e-9b4d-f88980ef4c74)
 
 After i did that and started a terminal session on my pc, I could view the logs. I am on Debian Linux so i use picocom but you can use putty or minicom if you desire: 
-(https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt)
+[Bootlogs](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/bootlog.txt)
 Seems the engineers/devs had time and fun to embed a nice little 'splash' into the boot output. From these logs we can see that it uses Das U-boot (or simply U-boot) as a bootloader. U-boot is common on embedded devices and runs in millions of devices and hardware combinations and its opensource meaning you can tweak it how much you want and that makes it nice and easy to strip down on storage limited devices like embedded devices. It also runs Linux 3.10.14 which is common for Ingenic chips. And the __isvp_pike_ is the codename of the chip. 'Pike' is common for Ingenic T23 chips. Below is a table of codenames for the chips. And the isvp part means 'Ingenic Smart video platform'. 
 
 | Chip  |Codename |
