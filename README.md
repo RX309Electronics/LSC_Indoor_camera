@@ -90,6 +90,15 @@ cp -Rf /etc/  $tmp_etc_dir
 ifconfig lo 127.0.0.1
 export PATH=/tmp/bin:/tmp/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
 export LD_LIBRARY_PATH=/tmp/lib:/lib:/usr/lib:/usr/local/lib
+/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+echo 4 > /proc/sys/kernel/printk
+syslogd -D -n -O /var/log/messages -s 200 -b 3 & 
+klogd -n &
+echo 256 > /proc/sys/vm/min_free_kbytes
+echo 300 > /proc/sys/vm/dirty_expire_centisecs 
+echo 200 > /proc/sys/vm/vfs_cache_pressure 
+/usr/local/sbin/load_modules.sh
 ```
 
 After that you should have access to the config files in /mnt/config and the Tuya stuff in /usr and /usr/local. I also included all commands in a file called 'basic_init' which contains all the commands to mount the basic /dev, /sys and /proc directories and mount the config and Tuya USR partition and prepare the system you can simply copy and paste [This](https://github.com/RX309Electronics/LSC_Indoor_camera/blob/main/basic_init). into the shell. This script contains eveyrhting from the inittab, rcS and start_app script thats needed to set up the environment and load drivers.
