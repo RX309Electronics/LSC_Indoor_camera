@@ -56,7 +56,7 @@ up_bootargs=setenv bootargs console=ttyS1,115200n8 mem=${holily_mem}M@0x0 rmem=1
 As you can see standard kernel parameters, and this is where we can break in. By changing the 'Init' or 'rdinit' parameter from standard '/linuxrc' to '/bin/sh' we basically say to the kernel to run /bin/sh (standard busybox shell) as PID 1 process. In Unix and *Nix PID 1 is the process that inmideatly runs after the kernel has initialised and runs till the device is shut off and has to keep running the whole time (otherwise you get a kernel panic). /linuxrc basically runs the standard init scripts and starts the application while /bin/sh presents a non-passsword-protected shell to us.
 Here are the commands to update the up_bootargs to bypass the normal init:
 ```
-setenv up_bootargs 'setenv bootargs console=ttyS1,115200n8 mem=${holily_mem}M@0x0 rmem=18M@0x2e00000 init=/bin/sh rootfstype=squashfs root=/dev/mtdblock5 rw mtdparts=${mtdparts}'.
+setenv up_bootargs 'setenv bootargs console=ttyS1,115200n8 mem=${holily_mem}M@0x0 rmem=18M@0x2e00000 init=/bin/sh rootfstype=squashfs root=/dev/mtdblock5 rw mtdparts=${mtdparts}'
 saveenv
 boot
 ```
